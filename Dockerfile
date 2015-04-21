@@ -2,16 +2,16 @@ FROM ubuntu:14.04.2
 MAINTAINER Mitchell Mebane <mitchell.mebane@gmail.com>
 
 # Basic Ubuntu updates
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 
 # Install Ethereum
-RUN apt-get install -qy software-properties-common \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -qy software-properties-common \
  && add-apt-repository ppa:ethereum/ethereum \
  && add-apt-repository ppa:ethereum/ethereum-qt \
  && apt-get update
 
 ENV ETH_VERSION 0.8.2+28trusty-0ubuntu1
-RUN apt-get install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
  cpp-ethereum=$ETH_VERSION \
  eth=$ETH_VERSION \
  neth=$ETH_VERSION \
